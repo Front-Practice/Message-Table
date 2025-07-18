@@ -1,0 +1,186 @@
+// Variables
+$primary-font: 'Roboto', sans-serif;
+$background-color: #fff;
+$container-bg: #fff;
+$input-bg: #f2f2f2;
+$text-color: #333;
+$label-color: #555;
+$placeholder-color: #aaa;
+$border-color: #e0e0e0;
+$table-header-bg: #4A3C6F;
+$table-header-text: #fff;
+$button-gradient: linear-gradient(90deg, #3A7CFD, #3BE68E);
+$secondary-btn-color: #6c757d;
+
+
+body {
+    font-family: $primary-font;
+    background-color: $background-color;
+    color: $text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+    box-sizing: border-box;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: $container-bg;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    color: #000;
+}
+
+
+.view {
+    display: none;
+    &.active {
+        display: block;
+    }
+}
+
+#form-section {
+    position: relative;
+    padding-bottom: 4rem;
+}
+
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .form-row {
+        display: flex;
+        gap: 1.5rem;
+        @media (max-width: 600px) {
+            flex-direction: column;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        label {
+            font-size: 0.875rem;
+            color: $label-color;
+            margin-bottom: 0.5rem;
+        }
+
+        input,
+        textarea {
+            background-color: $input-bg;
+            border: none;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: $primary-font;
+            font-size: 1rem;
+            color: $text-color;
+
+            &::placeholder {
+                color: $placeholder-color;
+            }
+
+            &:focus {
+                outline: 2px solid #3A7CFD;
+            }
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.submit-btn {
+    background: $button-gradient;
+    border: none;
+    color: white;
+    padding: 0.8rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+}
+
+
+.secondary-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    background: none;
+    border: 1px solid $border-color;
+    color: $secondary-btn-color;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background-color: $secondary-btn-color;
+        color: white;
+    }
+}
+
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#submissions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+
+    thead {
+        background-color: $table-header-bg;
+        tr th {
+            color: $table-header-text;
+            text-align: left;
+            padding: 1rem;
+            font-weight: 700;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $border-color;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        td {
+            padding: 1rem;
+            color: $label-color;
+            vertical-align: middle;
+        }
+    }
+}
