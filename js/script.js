@@ -1,48 +1,43 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const formSection = document.getElementById('form-section');
-    const tableSection = document.getElementById('table-section');
-    const contactForm = document.getElementById('contact-form');
-    const tableBody = document.querySelector('#submissions-table tbody');
-    const seeTableBtn = document.getElementById('see-table-btn');
-    const goBackBtn = document.getElementById('go-back-btn');
+    const $ = id => document.getElementById(id);
 
-    function showView(viewToShow) {
+    const formSection = $('form-section');
+    const tableSection = $('table-section');
+    const contactForm = $('contact-form');
+    const tableBody = document.querySelector('#submissions-table tbody');
+    const seeTableBtn = $('see-table-btn');
+    const goBackBtn = $('go-back-btn');
+
+    const showView = view => {
         formSection.classList.remove('active');
         tableSection.classList.remove('active');
-        viewToShow.classList.add('active');
-    }
+        view.classList.add('active');
+    };
 
-    contactForm.addEventListener('submit', function(event) {
-        event.preventDefault();
+    contactForm.addEventListener('submit', e => {
+        e.preventDefault();
 
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-        const message = document.getElementById('message').value;
-        
+        const name = $('name').value;
+        const email = $('email').value;
+        const phone = $('phone').value || 'N/A';
+        const message = $('message').value || 'N/A';
+
         if (!name || !email) {
             alert('Please fill out your name and email.');
             return;
         }
 
-        const newRow = tableBody.insertRow(0); 
-        newRow.innerHTML = `
+        tableBody.insertRow(0).innerHTML = `
             <td>${name}</td>
             <td>${email}</td>
-            <td>${phone || 'N/A'}</td>
-            <td>${message || 'N/A'}</td>
+            <td>${phone}</td>
+            <td>${message}</td>
         `;
 
         contactForm.reset();
-
         showView(tableSection);
     });
 
-    seeTableBtn.addEventListener('click', function() {
-        showView(tableSection);
-    });
-
-    goBackBtn.addEventListener('click', function() {
-        showView(formSection);
-    });
+    seeTableBtn.addEventListener('click', () => showView(tableSection));
+    goBackBtn.addEventListener('click', () => showView(formSection));
 });
